@@ -38,7 +38,7 @@ export class storageService {
 	async updatePost(slug, { title, content, featuredImage, status }) {
 		try {
 			return await this.databases.updateDocument(
-				conf.appwriteProjectId,
+				conf.appwriteDatabaseId,
 				conf.appwriteCollectionId,
 				slug,
 				{
@@ -71,37 +71,36 @@ export class storageService {
 			return false
 		}
 	}
+ //bro WTF the only part that i wrote myself had error in this code base like i wrote entire backend and for fucks sake it has error.
+   async getPost(slug){
+        try {
+            return await this.databases.getDocument(
+                conf.appwriteDatabaseId,
+                conf.appwriteCollectionId,
+                slug
 
-	async getPost(slug) {
-		try {
-			return await this.databases.getDocument(
-				conf.appwriteProjectId,
-				conf.appwriteCollectionId,
-				slug
+            )
+        } catch (error) {
+            console.log("Appwrite serive :: getPost :: error", error);
+            return false
+        }
+    }
 
-			)
+    async getPosts(queries = [Query.equal("status", "active")]){
+        try {
+            return await this.databases.listDocuments(
+                conf.appwriteDatabaseId,
+                conf.appwriteCollectionId,
+                queries,
 
-		}
-		catch (error) {
-			console.log("Appwrite serive :: getPost :: error", error);
-			return false
-		}
 
-	}
+            )
+        } catch (error) {
+            console.log("Appwrite serive :: getPosts :: error", error);
+            return false
+        }
+    }
 
-	async getPosts(queries = [Query.equal("status", "equal")]) {
-		try {
-			return await this.databases.listDocuments(
-				conf.appwriteCollectionId,
-				conf.appwriteDatabaseId,
-				queries,
-			)
-		}
-		catch (error) {
-			console.log("Appwrite serive :: getPosts :: error", error);
-			return false
-		}
-	}
 	//filemanipulation
 	async uploadFile(file) {
 		try {
