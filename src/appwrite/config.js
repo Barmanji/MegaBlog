@@ -54,23 +54,22 @@ export class storageService {
 			console.log("Appwrite serive :: updatePost :: error", error);
 		}
 	}
-	async deletePost(slug) {
 
-		try {
-			return await this.databases.deleteDocument(
-				conf.appwriteProjectId,
-				conf.appwriteCollectionId,
-				slug
+    async deletePost(slug){
+        try {
+            await this.databases.deleteDocument(
+                conf.appwriteDatabaseId,
+                conf.appwriteCollectionId,
+                slug
 
-			)
-			return true
+            )
+            return true
+        } catch (error) {
+            console.log("Appwrite serive :: deletePost :: error", error);
+            return false
+        }
+    }
 
-		}
-		catch (error) {
-			console.log("Appwrite serive :: deletePost :: error", error);
-			return false
-		}
-	}
  //bro WTF the only part that i wrote myself had error in this code base like i wrote entire backend and for fucks sake it has error.
    async getPost(slug){
         try {
