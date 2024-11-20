@@ -21,13 +21,13 @@ function App() {
     })
     .finally(() => setLoading(false))
   }, [])
-  
+
   return !loading ? (
-    <div className='min-h-screen flex flex-wrap content-between bg-gray-400'>
+    <div       className="px-4 py-2 bg-gray-700 text-white font-medium text-sm rounded-md shadow-sm  focus:outline-none transition duration-200">
       <div className='w-full block'>
         <Header />
         <main>
-        TODO:  <Outlet />
+         <Outlet />
         </main>
         <Footer />
       </div>

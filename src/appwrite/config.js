@@ -31,7 +31,7 @@ export class storageService {
 				}
 			)
 		} catch (error) {
-			console.log("Appwrite serive :: createPost :: error", error);
+			console.log("Appwrite serivce :: createPost :: error", error);
 		}
 	}
 
